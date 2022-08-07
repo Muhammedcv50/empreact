@@ -1,10 +1,10 @@
-const InputSelect= ({options,cls}) =>
+const InputSelect= ({options,cls,id}) =>
 {
     return(
         <div >
-            <select className={cls} >
+            <select id ={id} className={cls} >
                 {
-                    options.map((item)=> (
+                    options?.map((item)=> (
                        <option>{item}</option> 
 
                     ))

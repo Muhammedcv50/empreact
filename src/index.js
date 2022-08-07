@@ -15,7 +15,7 @@ import { store } from './store/store';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
-  <React.StrictMode>
+ // <React.StrictMode>
     <BrowserRouter>
     <Provider store={store}>
       {/* <Counter/> */}
@@ -27,8 +27,8 @@ root.render(
       </Routes>
     </Provider>
     </BrowserRouter>
-    {/* <App /> */}
-  </React.StrictMode>
+    // <App />
+  // </React.StrictMode>
 );
 
 // If you want to start measuring performance in your app, pass a function

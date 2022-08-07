@@ -4,7 +4,7 @@ import icon from '../assets/Group 18536@2x.png';
 
 const NavBar = () => { 
     return (
-      <aside>
+      <aside id="nav">
          <div id ="tab" >
             <div id="icon">
             <img src={icon} alt="e" />
