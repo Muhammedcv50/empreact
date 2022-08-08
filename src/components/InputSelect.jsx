@@ -1,11 +1,11 @@
-const InputSelect= ({options,cls,id}) =>
+const InputSelect= ({text,options,cls,id,onChange}) =>
 {
     return(
         <div >
-            <select id ={id} className={cls} >
+            <select id ={id} className={cls} value={text} onChange={(event)=> onChange(event.target.value) }>
                 {
-                    options?.map((item)=> (
-                       <option>{item}</option> 
+                    options?.map((item,i)=> (
+                       <option  key={i} value={item} >{item}</option> 
 
                     ))
                 }

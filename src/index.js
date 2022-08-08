@@ -12,6 +12,7 @@ import CreateEmployee from './pages/CreateEmployee';
 //import Counter from './pages/Counter';
 import { Provider } from 'react-redux';
 import { store } from './store/store';
+import UpdateEmployee from './pages/UpdateEmployee';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
@@ -23,6 +24,7 @@ root.render(
          {/* <Route path="/counter" element = {<Counter/>}/> */}
          <Route path="/list" element = {<EmployeeList/>}/>
          <Route path="/create" element = {<CreateEmployee/>}/>
+         <Route path="/:id" element = {<UpdateEmployee/>}/>
          <Route path="/" element = {<Login/>}/>
       </Routes>
     </Provider>

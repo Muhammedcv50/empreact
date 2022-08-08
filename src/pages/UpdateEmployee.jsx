@@ -2,19 +2,20 @@ import InputField from '../components/InputField'
 import TextField from '../components/TextField';
 import Button from "../components/Button"
 import { useNavigate } from "react-router-dom";
-import { useState,useEffect } from 'react';
+import { useEffect, useState} from 'react';
 import InputSelect from '../components/InputSelect'
 import Header from '../components/Header';
 import NavBar from '../components/NavBar';
 import '../styles/style.css'
-import { useCreateEmployeeMutation} from "../services/api";
-
-// import { useParams } from 'react-router-dom';
-
+import { useUpdateEmployeeMutation,useGetEmployeeByIdQuery} from "../services/api";
+import { useParams } from 'react-router-dom';
 
 
 
-function CreateEmployee(){
+
+function UpdateEmployee(){
+
+const navigate = useNavigate();
 
 const [employee,setEmployee]=useState({
     name:"",
@@ -33,6 +34,9 @@ const [employee,setEmployee]=useState({
      zip:""  
     }
 });
+
+
+const [updateEmployee, { isLoading: isUpdating }] = useUpdateEmployeeMutation()
 
 const onChange =(key,value) =>
 {
@@ -54,14 +58,10 @@ const onChange =(key,value) =>
         }
         );
     }
-        
-           
-        
-        
-  
-    console.log(employee)
+    
 }
-const [createEmployee, result] = useCreateEmployeeMutation()
+
+
 
 // useEffect(() => {
 //     setEmployee({name:"Enter name",role:"Enter role",status:"Enter status",experience:"Enter experience",});
@@ -69,10 +69,41 @@ const [createEmployee, result] = useCreateEmployeeMutation()
 //   },[]);
 
 
-const navigate = useNavigate();
+
 
 const roles=["admin","trainee"];
 const status=["Active","Inactive","Probation"];
+const {id}=useParams();
+const {data,isLoading, error}=useGetEmployeeByIdQuery(id);
+console.log(data?.data.name)
+
+useEffect(()=>{
+    if(data?.data)
+    {
+    setEmployee({
+        id:data?.data?.id,
+        name:data?.data?.name,
+        status:data?.data?.status,
+        experience:data?.data?.experience,
+        joiningDate:data?.data?.joiningDate,
+        role:data?.data?.role,
+        address:{
+            city:data?.data?.address.city,
+            district:data?.data?.address.district,
+            state:data?.data?.address.state,
+            addressLine1:data?.data?.address.addressLine1,
+            zip:data?.data?.address.zip
+        }});
+    }
+},[data]);
+
+
+console.log(employee.name)
+ 
+
+
+
+
 
 
     return (
@@ -83,7 +114,7 @@ const status=["Active","Inactive","Probation"];
         <div id="body">
             
         <div id="title">
-            Create Employee
+            Update Employee
         </div>
         <div id="form" >
         <div id="details">
@@ -92,7 +123,7 @@ const status=["Active","Inactive","Probation"];
             {/* <label >Employee Name</label> */}
             <TextField text="Employee Name" cls="emplabel"/> <br/>
             {/* <input id="ename" type="text" placeholder={"Employee Name"}/> */}
-            <InputField cls="empinput" type="text" placehold="Name" text={employee.name} onChange={(value)=>onChange("name",value)}/>
+            <InputField cls="empinput" id="name" type="text" placehold="Name" text={employee.name} onChange={(value)=>onChange("name",value)}/>
         </div>
 
         {/* <div >
@@ -115,23 +146,13 @@ const status=["Active","Inactive","Probation"];
             <TextField text='Role' cls="emplabel" /> <br/>
             <InputSelect cls="empinput" text={employee.role} options={roles}  onChange={(value)=>onChange("role",value)}/>
 
-            {/* <select name="role" id="role" >
-                <option value="role1">Role1</option>
-                <option value="role2">Role2</option>
-                <option value="role3">Role3</option>
-                <option value="rol4">Role4</option>
-              </select> */}
+            
         </div>
 
         <div className="empdetail">
             <TextField text='Status' cls="emplabel"/> <br/>
              <InputSelect key="ds" cls="empinput"  text={employee.status} options= {status}  onChange={(value)=>onChange("status",value)}/> 
-            {/* <select name="status" id="status">
-                <option value="status">Status1</option>
-                <option value="status">Status2</option>
-                <option value="status">Status3</option>
-                <option value="status">Status4</option>
-              </select> */}
+          
         </div>
 
         <div className="empdetail">
@@ -156,12 +177,7 @@ const status=["Active","Inactive","Probation"];
             <TextField text='City' cls="emplabel"/> <br/>
             <InputField cls="empinput" type="text" placeholder={employee.experience} text={employee.address.city}  onChange={(value)=>onChange("city",value)}/>
         </div>
-
-        {/* <div className="empdetail">
-            <TextField text='District' cls="emplabel"/> <br/>
-            <InputField cls="empinput" type="text" placeholder={employee.experience} text={employee.address.district}  onChange={(value)=>onChange("district",value)} />
-        </div> */}
-
+       
         <div className="empdetail">
             <TextField text='State' cls="emplabel"/> <br/>
             <InputField cls="empinput" type="text" placeholder={employee.experience} text={employee.address.state}  onChange={(value)=>onChange("state",value)}/>
@@ -172,18 +188,18 @@ const status=["Active","Inactive","Probation"];
             <InputField cls="empinput" type="text" placeholder={employee.address.zip} text={employee.address.zip} onChange={(value)=>onChange("zip",value)} />
         </div>
 
-
+    
     </div>
        
        
     <div id="btns">
 
         <div >
-        <Button id="createbutton" label="Create" handleClick={()=>{createEmployee(employee);navigate('/list')}} />
+        <Button id="updatebutton" label="Update" handleClick={()=>{updateEmployee(employee);navigate('/list')}} />
         </div>
 
         <div >
-        <Button id="cancelbutton2" label="Cancel" handleClick={()=>{navigate('/list')}} />
+        <Button id="cancelbutton" label="Cancel" handleClick={()=>{navigate('/list')}} />
         </div>
 
    </div>
@@ -196,4 +212,4 @@ const status=["Active","Inactive","Probation"];
 ) ;
 }
 
-export default CreateEmployee
+export default UpdateEmployee

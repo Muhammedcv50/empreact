@@ -1,19 +1,26 @@
 import { useNavigate } from "react-router-dom";
 import Button from "../components/Button";
-import { useGetAllEmployeesQuery } from "../services/api";
+import {useGetAllEmployeesQuery,useDeleteEmployeeMutation} from "../services/api";
 import Header from "../components/Header";
 import NavBar from "../components/NavBar";
 import "../styles/style.css";
 import InputSelect from "../components/InputSelect";
 import crtbtn from "../assets/add_blue.png";
+import TableRow from "../components/TableRow";
 
-// import { ListItem } from 'react-native-elements'
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"></link>
 
-// import Button from "../components/Button"
+
 
 const EmployeeList = () => {
   console.log("rendering.........");
   const navigate = useNavigate();
+
+  const [deleteEmployee, { isLoading: isDeleting }] = useDeleteEmployeeMutation();
+  const updateEmp = (id)=>{
+    navigate(`/${id}`)
+  }
+  
   const { data, isLoading, isFetching, error } = useGetAllEmployeesQuery();
   if (error) {
     console.log("error");
@@ -62,24 +69,25 @@ const EmployeeList = () => {
   // ];
   const filterlist = ["Status", "Role"];
 
-  function buildTable(data) {
-    //console.log("isloading", isLoading);
-    var table = document.getElementById("tablebody");
-    //console.log("table",table);
+  // function buildTable(data) {
+  //   //console.log("isloading", isLoading);
+  //   var table = document.getElementById("tablebody");
+  //   //console.log("table",table);
 
-    for (var i = 0; i < data?.length; i++) {
-      var id2 = data[i].id.substring(0, 8);
-      var row = `<tr>
-                <td>${data[i].name}</td>
-                <td>${id2}</td>
-                <td>${data[i].joiningDate}</td>
-                <td>${data[i].role}</td>
-                <td>${data[i].status}</td>
-                <td>${data[i].experience}</td>
-              </tr>`;
-      table.innerHTML += row;
-    }
-  }
+  //   for (var i = 0; i < data?.length; i++) {
+  //     var id2 = data[i].id.substring(0, 8);
+  //     var row = `<tr>
+  //               <td>${data[i].name}</td>
+  //               <td>${id2}</td>
+  //               <td>${data[i].joiningDate}</td>
+  //               <td>${data[i].role}</td>
+  //               <td>${data[i].status}</td>
+  //               <td>${data[i].experience}</td>
+               
+  //             </tr>`;
+  //     table.innerHTML += row;
+  //   }
+  // }
 
   return (
     <div>
@@ -94,9 +102,8 @@ const EmployeeList = () => {
             id="creator"
             onClick={() => {
               navigate("/create");
-            }}
-          >
-            {" "}
+            }}>
+
             <input
               type="image"
               id="crtbtn"
@@ -117,14 +124,21 @@ const EmployeeList = () => {
             <th>Experience</th>
             <th>Actions</th>
           </tr>
-          <tbody id="tablebody" />
+          <tbody >
+            {
+              data?.data.map((item) => (
+                 <TableRow data={item} id="tbody" onDelete={()=>{deleteEmployee(item.id)}} onUpdate={()=>{updateEmp(item.id)}}/>
+                
+                ))
+            }
+          </tbody>
         </table>
         <>
           <br />
 
           {
             
-            buildTable(data?.data)
+            //buildTable(data?.data)
             //   data?.data?.map(item => (
             //    <>
             //   {item.id}&nbsp;&nbsp;

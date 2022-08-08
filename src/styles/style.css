@@ -73,7 +73,8 @@ header
     width: 100%;
 }
 
-form{
+#form{
+
     position: relative;
     background-color: white;
     height: 600px;
@@ -81,7 +82,7 @@ form{
     margin-left: 23px;
     display:flex;
     flex-wrap: wrap;
-    flex-direction: column;
+    flex-direction: row;
     border-radius: 5px;
     
 
@@ -110,12 +111,15 @@ form{
 {
     display:flex;
     flex-wrap: wrap;
+    flex-direction: row;
+ 
     
 }
 #btns
 {
     display:flex;
     flex-wrap: wrap;
+    flex-direction: row;
     margin: 10px;
     padding: 10px;
 
@@ -159,8 +163,35 @@ opacity: 1;
 border-radius: 5px;
 
 }
+#updatebutton
+{
+width: 150px;
+height: 35px;
+background: #03AEEE 0% 0% no-repeat padding-box;
+color:white ;
+font: normal normal bold 16px/22px Sans-Serif;
+/* border-radius: 3px; */
+border: 1px solid #D9D9D9;
+opacity: 1;
+border-radius: 5px;
+
+}
 
 #cancelbutton
+{
+    margin-left: 20px;
+    width: 150px;
+    height: 35px;
+    background: #FFFFFF 0% 0% no-repeat padding-box;
+    /* border-radius: 3px; */
+    /* border-color: gray; */
+    border: 2px solid #D9D9D9;
+    font: normal normal bold 16px/22px Sans-Serif;
+    color: gray;
+    opacity: 1;
+    border-radius: 5px;
+}
+#cancelbutton2
 {
     margin-left: 20px;
     width: 150px;
@@ -306,4 +337,75 @@ border-radius: 5px;
     position: relative;
     top: -40px;
 
+}
+
+#tablehead
+{
+    width: 1573px;
+    height: 60px;
+    background: #EAF9FF 0% 0% no-repeat padding-box;
+    box-shadow: 0px 3px 6px #9D9D9D29;
+    border-radius: 10px;
+    margin-top: 20px;
+    margin-left: 29px;
+    opacity: 1;
+    font: normal normal bold 16px/16px Arial;
+    padding-left: 64px;
+    align-items: center;
+    display: flex; 
+}
+#tablehead th{
+    margin-right: 120px;
+}
+
+#tbody{
+    width: 1573px;
+    height: 60px;
+    background: white 0% 0% no-repeat padding-box;
+    box-shadow: 0px 3px 6px #9D9D9D29;
+    border-radius: 10px;
+    margin-top: 12px;
+    margin-left: 39px;
+    opacity: 1;
+    font: normal normal  16px/16px Arial;
+    padding-left: 69px;
+    align-items: center;
+    display: flex; 
+}
+#tbody td{
+    margin-right: 120px;
+    width: 108px;
+    justify-content: center;
+}
+#tstatus{
+    background: yellow 0% 0% no-repeat padding-box;
+    height: 35px;
+    left: -120px;
+    border-radius: 20px;
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center
+
+}
+
+
+#texperience{
+    left:-120px;
+    position: relative;
+}
+
+#trole{
+    left:-25px;
+    position: relative;
+}
+
+#tdelete{
+    left:-170px;
+    position: relative;
+}
+
+#tedit{
+    left:-170px;
+    position: relative;
 }

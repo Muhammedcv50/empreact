@@ -9,11 +9,11 @@
 //     export default InputField;
 
     const InputField = (props) => { 
-        const {text,cls,placehold,id} = props
+        const {text,cls,placehold,id,onChange} = props
         return (
             <div>
             {/* <label>{label}</label> */}
-            <input id={id} className={cls} value={text} placeholder={placehold} type="text" />
+            <input id={id} className={cls} value={text} placeholder={placehold} type="text" onChange={(event)=> onChange(event.target.value)} />
             </div>
         );
     };
