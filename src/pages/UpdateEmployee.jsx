@@ -20,7 +20,7 @@ const navigate = useNavigate();
 const [employee,setEmployee]=useState({
     name:"",
     experience:0,
-    joiningDate:"2010-10-11",
+    joiningDate:"",
     departmentId:"c0c8c7a1-77d8-479b-b33c-064a06b09de9",
     status:"Inactive",
     role:"trainee",
@@ -75,7 +75,7 @@ const roles=["admin","trainee"];
 const status=["Active","Inactive","Probation"];
 const {id}=useParams();
 const {data,isLoading, error}=useGetEmployeeByIdQuery(id);
-console.log(data?.data.name)
+//console.log(data?.data.name)
 
 useEffect(()=>{
     if(data?.data)

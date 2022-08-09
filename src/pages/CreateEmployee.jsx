@@ -19,7 +19,7 @@ function CreateEmployee(){
 const [employee,setEmployee]=useState({
     name:"",
     experience:0,
-    joiningDate:"2010-10-11",
+    joiningDate:"",
     departmentId:"c0c8c7a1-77d8-479b-b33c-064a06b09de9",
     status:"Inactive",
     role:"trainee",
@@ -59,7 +59,7 @@ const onChange =(key,value) =>
         
         
   
-    console.log(employee)
+  
 }
 const [createEmployee, result] = useCreateEmployeeMutation()
 

@@ -5,17 +5,17 @@ import { getStorage } from './utils'
 // Define a service using a base URL and expected endpoints
 export const baseApi = createApi({
   reducerPath: 'baseApi',
-  baseQuery: fetchBaseQuery({ baseUrl: 'http://localhost:3000/api/' }),
+  baseQuery: fetchBaseQuery({ baseUrl: 'http://localhost:3000/api/' ,
   prepareHeaders: (headers) => {
     const idToken = getStorage("idToken")
-    
     if (idToken) {
       headers.set('authorization', `Bearer ${idToken}`)
     }
 
     return headers
-  }
-   ,
+  }}),
+  
+   
 
   tagTypes:["EmployeeList"],
   refetchOnMountOrArgChange:true,
@@ -24,6 +24,7 @@ export const baseApi = createApi({
       query:() => `employee`,
       providesTags:["EmployeeList"],
     }),
+    
 
     getEmployeeById: builder.query({
       query:(id) => {
@@ -62,6 +63,7 @@ export const baseApi = createApi({
           body,
         }
       },
+     invalidatesTags:["EmployeeList"]
    
    }),
    employeeLogin: builder.mutation({

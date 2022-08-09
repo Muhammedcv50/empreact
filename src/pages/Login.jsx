@@ -25,14 +25,17 @@ const Login= () =>
             }
             );
      }
-     const handle=()=>{employeeLogin(credential);  
-         console.log(result);    
+     const [employeeLogin] = useEmployeeLoginMutation()
+     
+    //  console.log(result)
+
+     const handle=async ()=>{
+        const result = await employeeLogin(credential);   
           if(result)
           {setStorage("idToken",result.data.data.idToken)
             gotoNextPage()}}
 
-     const [employeeLogin, result] = useEmployeeLoginMutation()
-     console.log(credential);
+     
 
     const gotoNextPage= ()=>{navigate('/list');};
     return(

@@ -308,6 +308,7 @@ border-radius: 5px;
     width: 140px;
     margin: 15px;
     background: #eaf9ff 0% 0% no-repeat padding-box;
+    font: normal normal 16px/16px Arial;
     border-radius: 20px;
     height: 30px;
     padding-left: 45px;
@@ -354,7 +355,7 @@ border-radius: 5px;
     align-items: center;
     display: flex; 
 }
-#tablehead th{
+#tablehead td{
     margin-right: 120px;
 }
 
@@ -403,9 +404,32 @@ border-radius: 5px;
 #tdelete{
     left:-170px;
     position: relative;
+    background: white 0% 0% no-repeat padding-box;
+    border: white;
 }
 
 #tedit{
-    left:-170px;
+    left:-140px;
     position: relative;
+    background: white 0% 0% no-repeat padding-box;
+    border: white;
+}
+
+#detemp{
+    position: relative;
+    background-color: white;
+    height: 600px;
+    margin-top: 26px;
+    margin-left: 23px;
+    display:flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+    border-radius: 5px;
+
+}
+
+.det{
+    display:flex;
+    flex-wrap: wrap;
+    flex-direction: column;
 }

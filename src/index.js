@@ -13,6 +13,7 @@ import CreateEmployee from './pages/CreateEmployee';
 import { Provider } from 'react-redux';
 import { store } from './store/store';
 import UpdateEmployee from './pages/UpdateEmployee';
+import EmployeeDetails from './pages/EmployeeDetails';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
@@ -26,6 +27,8 @@ root.render(
          <Route path="/create" element = {<CreateEmployee/>}/>
          <Route path="/:id" element = {<UpdateEmployee/>}/>
          <Route path="/" element = {<Login/>}/>
+         <Route path="/details/:id" element = {<EmployeeDetails/>}/>
+
       </Routes>
     </Provider>
     </BrowserRouter>
