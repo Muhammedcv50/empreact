@@ -28,7 +28,7 @@ const EmployeeList = () => {
   }
 
   
-  const filterlist = ["Status", "Role"];
+  const filterlist = ["Status", "Active","Inactive","Probation"];
 
   
 
@@ -74,11 +74,20 @@ const EmployeeList = () => {
           </thead>
           <tbody >
             {
-              data?.data.map((item) => (
-             
-                 <TableRow data={item} id="tbody" onDelete={()=>{deleteEmployee(item.id)}} onUpdate={()=>{updateEmp(item.id)}}/>
-                
-                ))
+              data?.data.map((item) => {
+                if(item.status==="Active")
+                {
+                  console.log("active")
+                  return (<TableRow data={item} id="tbody" color="#D3F4BE" onDelete={()=>{deleteEmployee(item.id)}} onUpdate={()=>{updateEmp(item.id)}}/>)
+
+                }
+                else if(item.status==="Inactive"){
+                  console.log("inactive")
+                 return (<TableRow data={item} id="tbody" color="#FFBFBF" onDelete={()=>{deleteEmployee(item.id)}} onUpdate={()=>{updateEmp(item.id)}}/>)}
+                 else {
+                  console.log("probation")
+                 return (<TableRow data={item} id="tbody" color="#F5ECB8" onDelete={()=>{deleteEmployee(item.id)}} onUpdate={()=>{updateEmp(item.id)}}/>)}
+              })
             }
           </tbody>
         </table>

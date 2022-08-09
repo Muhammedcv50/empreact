@@ -5,11 +5,15 @@ import { useParams } from 'react-router-dom';
 import TextField from '../components/TextField';
 import { useGetEmployeeByIdQuery} from "../services/api";
 import { useEffect, useState} from 'react';
+import crtbtn from "../assets/bluepen.png";
+import { useNavigate } from "react-router-dom"
+
 
 
 
 const EmployeeDetails= () =>
 {
+  const navigate = useNavigate();
 
   const [employee,setEmployee]=useState({
     name:"",
@@ -67,42 +71,57 @@ const EmployeeDetails= () =>
         <NavBar/>
         <div id="body">
         <div id="title">Employee Details
+        <button
+            id="creator2"
+            onClick={() => {
+              navigate(`/${id}`);
+            }}>
+
+            <input
+              type="image"
+              id="crtbtn2"
+              name="imgbtn"
+              src={crtbtn}
+              alt="Add an employee"
+            />
+            <label id="crtlbl2">Edit</label>
+          </button>
         </div>   
 
         <div id="detemp">
 
           <div className="det" >
-            <TextField   text = "Employee Name"  />
+            <TextField cls="detlabel"  text = "Employee Name"  />
             <TextField   text = {employee.name}  />
           </div>
 
           <div className="det" >
-            <TextField   text ="Employee ID"   />
+            <TextField cls="detlabel"   text ="Employee ID"   />
             <TextField   text ={employee.id}   />
           </div>
 
           <div className="det" >
-            <TextField   text ="Joining Date"   />
+            <TextField cls="detlabel"   text ="Joining Date"   />
             <TextField   text = {employee.joiningDate}  />
           </div>
 
           <div className="det" >
-            <TextField   text ="Role"   />
+            <TextField cls="detlabel"   text ="Role"   />
             <TextField   text = {employee.role}  />
           </div>
 
           <div className="det" >
-            <TextField   text ="Status"   />
+            <TextField  cls="detlabel"  text ="Status"   />
             <TextField   text = {employee.status}  />
           </div>
 
           <div className="det" >
-            <TextField   text ="Experience"   />Experience
+            <TextField  cls="detlabel"  text ="Experience"   />
             <TextField   text ={employee.experience}   />
           </div>
 
           <div className="det" >
-            <TextField   text ="Address"   />
+            <TextField  cls="detlabel"   text ="Address"   />
             <TextField   text ={employee.address.addressLine1}   />
           </div>
 
